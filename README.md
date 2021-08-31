@@ -72,6 +72,9 @@ Close browser:
 curl -X DELETE http://TV-IP-ADDRESS:8001/api/v2/applications/3201907018784
 ```
 
+## Apps list
+https://github.com/tavicu/homebridge-samsung-tizen/wiki/Applications
+
 ## Send keys
 
 Connect:
