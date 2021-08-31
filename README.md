@@ -3,6 +3,9 @@
 ## Specification (Version 2.2.1)
 https://docs.google.com/viewer?a=v&pid=sites&srcid=ZGlhbC1tdWx0aXNjcmVlbi5vcmd8ZGlhbHxneDo1MWVmNzNhZDUyYTI0YTkz
 
+## Example
+https://epexa.github.io/dial/src/example.html
+
 ## gssdp-discover
 
 Install:
