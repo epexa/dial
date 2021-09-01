@@ -92,6 +92,7 @@ const connect = () => {
                 const message = JSON.parse(e.data);
                 if (message.data && message.data.token) localStorage.token = message.data.token;
             });
+            ws.addEventListener('error', () => alert('Connection error!'));
             if ( ! localStorage.token) alert('Confirm on TV!');
         }
         catch (e) {
