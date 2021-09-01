@@ -86,10 +86,13 @@ const connect = () => {
     if (ws) return true;
     if ($tvIpAddress.value) {
         try {
-            alert('Confirm on TV!');
-            ws = new WebSocket(`wss://${$tvIpAddress.value}:8002/api/v2/channels/samsung.remote.control`);
+            ws = new WebSocket(`wss://${$tvIpAddress.value}:8002/api/v2/channels/samsung.remote.control?token=${localStorage.token}`);
             ws.addEventListener('open', () => document.querySelector('#ip-address-area').hidden = true);
-            ws.addEventListener('message', (e) => console.log(e.data));
+            ws.addEventListener('message', (e) => {
+                const message = JSON.parse(e.data);
+                if (message.data && message.data.token) localStorage.token = message.data.token;
+            });
+            if ( ! localStorage.token) alert('Confirm on TV!');
         }
         catch (e) {
             console.error(e);
