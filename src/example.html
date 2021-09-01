@@ -23,12 +23,20 @@
                 margin-top: 0.5em;
                 margin-bottom: 0.5em;
             }
+            #ssl-error-area {
+                color:  red;
+                font-weight: bold;
+            }
         </style>
     </head>
     <body>
         <div class="row" id="ip-address-area">
             <label for="ip-address">TV IP address:</label>
             <input type="text" id="ip-address" placeholder="192.168.0.101">
+        </div>
+
+        <div class="row" id="ssl-error-area" hidden="">
+            Open <a target="_blank"></a> and click "Advanced" and click "Proceed to <span></span> (unsafe)" and refresh this page!
         </div>
 
         <div class="row">
@@ -92,7 +100,14 @@ const connect = () => {
                 const message = JSON.parse(e.data);
                 if (message.data && message.data.token) localStorage.token = message.data.token;
             });
-            ws.addEventListener('error', () => alert('Connection error!'));
+            ws.addEventListener('error', () => {
+                const $sslErrorArea = document.querySelector('#ssl-error-area');
+                $sslErrorArea.hidden = false;
+                $sslErrorArea.querySelector('a').text = `https://${$tvIpAddress.value}:8002`;
+                $sslErrorArea.querySelector('a').href = $sslErrorArea.querySelector('a').text;
+                $sslErrorArea.querySelector('span').innerText = $tvIpAddress.value;
+                alert('Connection error!');
+            });
             if ( ! localStorage.token) alert('Confirm on TV!');
         }
         catch (e) {
