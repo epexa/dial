@@ -129,6 +129,7 @@ if (localStorage && localStorage.tvIpAddress) {
 
 document.querySelectorAll('button').forEach(($btn) => {
     $btn.addEventListener('click', () => {
+        if (window.navigator.vibrate) window.navigator.vibrate(100);
         if ( ! connect()) return;
         const key = $btn.dataset.key;
         if ( ! parseInt(key)) {
